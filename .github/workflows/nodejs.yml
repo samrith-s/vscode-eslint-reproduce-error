@@ -1,0 +1,23 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+
+    - run: mkdir artifact
+
+    - run: echo ${{ github.event }} > artifact/github_event.json
+
+    - uses: actions/upload-artifact@v1
+      with:
+        name: Github Event
+        path: artifact
